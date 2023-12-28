@@ -1,0 +1,437 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<title>Photograph Photography Category Bootstrap Responsive Web Template | Home :: W3layouts</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="Photograph Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- //Meta tag Keywords -->
+
+	<!-- Custom-Files -->
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<!-- Bootstrap-Core-CSS -->
+	<link href="../static/css/pogo-slider.min.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- Banner-Slider-CSS -->
+	<link rel="stylesheet" href="../static/css/owl.theme.css" type="text/css" media="all">
+	<link rel="stylesheet" href="../static/css/owl.carousel.css" type="text/css" media="screen" property="" />
+	<!-- owl carousel -->
+	<link href="../static/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
+	<!-- gallery lightbox -->
+	<link rel="stylesheet" href="../static/css/style.css" type="text/css" media="all" />
+	<!-- Style-CSS -->
+	<link rel="stylesheet" href="../static/css/fontawesome-all.css">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //Custom-Files -->
+	<!-- <link href="../static/Reg/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/Reg/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all"> 
+	<link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'><link href='//fonts.googleapis.com/css?family=Raleway+Dots' rel='stylesheet' type='text/css'> -->
+
+	<!-- Web-Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+	    rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700&amp;subset=devanagari,latin-ext" rel="stylesheet">
+	<!-- //Web-Fonts -->
+
+</head>
+
+<body>
+	<!-- header -->
+	<header>
+		<!-- navigation -->
+		<div class="main-top py-1">
+			<nav class="navbar navbar-expand-lg navbar-light fixed-navi">
+				<div class="container">
+					<!-- logo -->
+					<h1>
+						<a class="navbar-brand font-weight-bold" href="index.html">
+							<img src="../static/images/icon.png" alt="" class="img-fluid" height="80" width="80"> Galleria
+						</a>
+					</h1>
+					<!-- //logo -->
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+						<ul class="navbar-nav ml-lg-auto">
+							
+						  {% if session['ut'] == "User" %} 
+
+							<li class="nav-item active mt-lg-0 mt-3">
+								<a class="nav-link" href="/">Home
+									<span class="sr-only">(current)</span>
+								</a>
+							</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Users
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/v_users">Users</a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Contributors
+                                </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/v_contributor ">Requests</a>
+                                    <a class="dropdown-item" href="/va_contributor">Approved</a>
+                                    <a class="dropdown-item" href="/vr_contributor">Rejected</a>
+                                    </div>
+                                </div>
+                            </li>
+							<li class="nav-item mx-lg-4 my-lg-0 my-3">
+								<a class="nav-link" href=" ">Complaints</a>
+							</li>
+							<li class="nav-item mx-lg-4 my-lg-0 my-3">
+								<a class="nav-link" href=" ">Image Bookings</a>
+							</li>;&nbsp;
+							<li class="nav-item">
+								<a class="nav-link" href=" ">Logout</a>
+							</li>
+
+							{% elif session['ut'] == "User" %}
+								<li class="nav-item active mt-lg-0 mt-3">
+									<a class="nav-link" href="/">Home
+										<span class="sr-only">(current)</span>
+									</a>
+								</li>   
+								<li class="nav-item">
+									<a class="nav-link" href=" ">Profile</a>
+								</li>     
+
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">
+										Contests
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href=" ">View Contests</a>
+										<a class="dropdown-item" href=" ">View Registrations</a>
+										<a class="dropdown-item" href=" ">View Results</a>
+									</div>
+								</li>     
+
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">
+										Images
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href=" ">View Images</a>
+										<a class="dropdown-item" href=" ">My Bookings</a>
+									</div>
+								</li>     
+
+								<li class="nav-item">
+									<a class="nav-link" href="/Logout">Logout</a>
+								</li>
+								
+							{% elif session['ut'] == "Contributor" %}
+
+									<li class="nav-item active mt-lg-0 mt-3">
+										<a class="nav-link" href="/">Home
+											<span class="sr-only">(current)</span>
+										</a>
+									</li>   
+									<li class="nav-item">
+										<a class="nav-link" href="/vw_profile">Profile</a>
+									</li>     
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											Images
+										</a>
+										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="/add_public_images">Add Public Images</a>
+											<a class="dropdown-item" href="/add_premium_images">Add Premium Images</a>
+											<a class="dropdown-item" href="/vw_images">View Images</a>
+										</div>
+									</li>     
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											Contests
+										</a>
+										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="/add_contests">Add Contests</a>
+											<a class="dropdown-item" href="/vw_contests">View Contests</a>
+											<a class="dropdown-item" href="/vw_photo">View Registrations</a>
+											<a class="dropdown-item" href="/add_result">Add Result</a>
+										</div>
+									</li>     
+
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											Complaints
+										</a>
+										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="/add_complaints">Add Complaints</a>
+											<a class="dropdown-item" href="/view_complaints">View Complaints</a>
+										</div>
+									</li>     
+									<li class="nav-item">
+										<a class="nav-link" href="/vw_bookings_cont">Bookings</a>
+									</li>     
+									<li class="nav-item">
+										<a class="nav-link" href="/Logout">Logout</a>
+									</li>   
+
+							{% else %}
+
+
+									<li class="nav-item active mt-lg-0 mt-3">
+										<a class="nav-link" href="/">Home
+											<span class="sr-only">(current)</span>
+										</a>
+									</li>&nbsp;&nbsp;
+									<li class="nav-item mx-lg-4 my-lg-0 my-3">
+										<a class="nav-link scroll" href="#about">About</a>
+									</li>&nbsp;&nbsp;
+									
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											Register
+										</a>
+										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="/register">Users</a>
+											<a class="dropdown-item" href="/register">Contributors</a>
+										</div>
+									</li>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											Images
+										</a>
+										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="/vw_images">Public Images</a>
+											<a class="dropdown-item" href="/vw_p_images">Premium Images</a>
+										</div>
+									</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<li class="nav-item">
+										<a class="nav-link" href="/login">Login</a>
+									</li>
+		
+							{% endif %}		
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<!-- //navigation -->
+	</header>
+    {% block content %}
+
+    {% endblock %}
+
+    
+
+
+
+
+    <!-- //newsletter -->
+
+	<!-- footer -->
+	<footer>
+		<div class="w3ls-footer-grids py-sm-4 py-3">
+			<div class="container py-xl-5 py-lg-3">
+				<div class="row">
+					<div class="col-md-4 w3l-footer pr-4">
+						<!-- logo -->
+						<h2>
+							<a class="navbar-brand font-weight-bold logo2" href="index.html">
+								<img src="../static/images/logo2.png" alt="" class="img-fluid"> Galleria
+							</a>
+						</h2>
+						<!-- //logo -->
+						<p class="mt-3">“If your photos aren’t good enough, then you’re not close enough.”</p>
+					</div>
+					<div class="col-md-2 w3l-footer my-md-0 my-4">
+						<h5 class="text-dark footer-links mb-4">Menu</h5>
+						<ul class="list-unstyled">
+							<li>
+								<a href="index.html" class="scroll">Home</a>
+							</li>
+							<li class="mt-2">
+								<a href="#gallery" class="scroll">Gallery</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3 w3l-footer mb-md-0 mb-4">
+						<h5 class="text-dark footer-links mb-4">Links</h5>
+						<ul class="list-unstyled">
+							<li class="mt-2">
+								<a href="#testimonials" class="scroll">Testimonials</a>
+							</li>
+							<li class="mt-2">
+								<a href="#contact" class="scroll">Contact Us</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3 w3l-footer footer-social-agile">
+						<h5 class="text-dark footer-links mb-4">Connect with us</h5>
+						<ul class="list-unstyled">
+							<li>
+								<a href="#">
+									<i class="fab fa-facebook-f"></i>
+								</a>
+							</li>
+							<li class="mx-1">
+								<a href="#">
+									<i class="fab fa-twitter"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fab fa-dribbble"></i>
+								</a>
+							</li>
+							<li class="ml-1">
+								<a href="#">
+									<i class="fab fa-vk"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- //footer -->
+
+	<!-- copyright -->
+	<div class="copy-right-w3ls py-3 border-top">
+		<div class="container">
+			<p class="copy-right-grids text-dark">© 2018 Photograph. All Rights Reserved | Design by
+				<a href="https://w3layouts.com/" target="_blank">W3layouts</a>
+			</p>
+		</div>
+	</div>
+	<!-- //copyright -->
+
+
+	<!-- Js files -->
+	<!-- JavaScript -->
+	<script src="../static/js/jquery-2.2.3.min.js"></script>
+	<!-- Default-JavaScript-File -->
+	<script src="../static/js/bootstrap.js"></script>
+	<!-- Necessary-JavaScript-File-For-Bootstrap -->
+
+	<!-- carousel -->
+	<script src="../static/js/owl.carousel.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.owl-carousel').owlCarousel({
+				loop: true,
+				margin: 10,
+				responsiveClass: true,
+				responsive: {
+					0: {
+						items: 1,
+						nav: true
+					},
+					600: {
+						items: 1,
+						nav: false
+					},
+					900: {
+						items: 1,
+						nav: false
+					},
+					1000: {
+						items: 3,
+						nav: true,
+						loop: false,
+						margin: 20
+					}
+				}
+			})
+		})
+	</script>
+	<!-- //carousel -->
+
+	<!-- fixed navigation -->
+	<script src="../static/js/fixed-nav.js"></script>
+	<!-- //fixed navigation -->
+
+	<!-- stats -->
+	<script src="../static/js/jquery.waypoints.min.js"></script>
+	<script src="../static/js/jquery.countup.js"></script>
+	<script>
+		$('.counter').countUp();
+	</script>
+	<!-- //stats -->
+
+	<!-- Pogo slider (for banner) -->
+	<script src="../static/js/jquery.pogo-slider.min.js"></script>
+	<script src="../static/js/main.js"></script>
+	<!-- Pogo slider (for banner) -->
+
+	<!-- smooth scrolling -->
+	<script src="../static/js/SmoothScroll.min.js"></script>
+	<!-- //smooth scrolling -->
+
+	<!-- start-smoth-scrolling -->
+	<script src="../static/js/move-top.js"></script>
+	<script src="../static/js/easing.js"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+
+	<!-- smooth scrolling-bottom-to-top -->
+	<script>
+		$(document).ready(function () {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+		});
+	</script>
+	<!-- //smooth scrolling-bottom-to-top -->
+
+	<!-- Gallery filter -->
+	<script src="../static/js/jquery-1.7.2.js"></script>
+	<script src="../static/js/jquery.quicksand.js"></script>
+	<script src="../static/js/pretty-script.js"></script>
+	<script src="../static/js/jquery.prettyPhoto.js"></script>
+	<!-- //jQuery-Photo-filter-lightbox-Gallery-plugin -->
+	<!-- //Js files -->
+
+</body>
+
+</html>

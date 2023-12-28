@@ -1,0 +1,71 @@
+{%extends 'layout.html'%}
+{%block content%}
+
+<div class="newsletter_right_w3agile py-5" id="newsletter">
+    <div class="container py-xl-5 py-lg-3">
+        <!-- heading title -->
+        <div class="main-title text-center mb-5">
+            <h3 class="tittle text-uppercase text-white font-weight-bold">Registered Contributors</h3>
+            <div class="title-icon">
+                <i class="fas fa-camera"></i>
+            </div>
+            
+        </div>
+
+                <table class="table table-striped table-bordered" style="color: #ffff;">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Date of birth</th>
+                            <th>Username</th>
+                            <th>Contact</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                <tbody>
+
+                {% for i in a %}
+                <tr>            
+                    <td>{{i.name}}</td>
+                    <td>{{i.age}}</td>
+                    <td>{{i.dob}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.number}}</td>
+                    <td>{{i.status}}</td>
+                    <td class="text-center"><a class='btn btn-info btn-xs' href="/approve_contributor/{{i.id}}">
+                        <span class="glyphicon glyphicon-edit"></span> Approve</a></td>
+                    <td class="text-center"><a class='btn btn-info btn-xs' href="/reject_contributor/{{i.id}}">
+                        <span class="glyphicon glyphicon-edit"></span> Reject</a></td>
+                </tr>       
+                {% endfor %}
+
+                {% for i in b %}
+                <tr>            
+                    <td>{{i.name}}</td>
+                    <td>{{i.age}}</td>
+                    <td>{{i.dob}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.number}}</td>
+                    <td>{{i.status}}</td>
+                </tr>       
+                {% endfor %}
+
+                {% for i in c %}
+                <tr>            
+                    <td>{{i.name}}</td>
+                    <td>{{i.age}}</td>
+                    <td>{{i.dob}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.number}}</td>
+                    <td>{{i.status}}</td>
+                </tr>       
+                {% endfor %}
+
+                    
+                </tbody>
+                </table>
+</div>
+</div>
+
+{%endblock%}
