@@ -1,0 +1,94 @@
+
+{% extends 'layout.html' %}
+{% block content %}
+
+<head>
+    {% if alert %}
+        <script>
+            alert("Your complaint successfully registered!!!!")
+        </script>
+    {% endif %}
+  </head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body
+        {
+            background-color: black;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .combox
+        {
+            border-style: solid;
+            border-width: 2px;
+            border-color: aliceblue;
+            align-items: center;
+            width: 60%;
+            height: 60%;
+            margin: 0px 0px 0px 290px;
+            text-align: center;
+        }
+        h1
+        {
+            color: #ff4f81;
+            text-align: center;
+        }
+        input[type=text]
+        {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            background: black;
+            color: #5d5a5a;
+        }
+        .txtarea
+        {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            background: black;
+            color: #5d5a5a;
+        }
+        input[type=submit]
+        {
+            background-color: #ff4f81;
+             color: white;
+             padding: 14px 20px;
+             margin: 8px 0;
+             border: none;
+             cursor: pointer;
+             width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Register Your complaints</h1><br>
+    <form method="post">
+      <div class="combox"><br><br><br>
+        &nbsp;&nbsp;<label for="Subject" style="color: #5d5a5a;"><b>Subject</b></label>
+           <input type="text" placeholder="Enter the subject of your complaint" name="sub" required maxlength="100"><br>
+
+        <label for="Message" style="color: #5d5a5a;"><b>Message</b></label>
+           <textarea class="txtarea" placeholder="Enter your complaint" name="message"  required rows="10" cols="100">
+           </textarea><br><br>
+
+        &nbsp;&nbsp;<input type="submit" value="Submit">   
+      </div>   
+        
+    </form>
+</body>
+</html>
+
+{% endblock %}

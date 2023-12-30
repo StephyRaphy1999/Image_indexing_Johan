@@ -73,7 +73,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
 						<ul class="navbar-nav ml-lg-auto">
 							
-						  {% if session['ut'] == "User" %} 
+						  {% if session['ut'] == "admin" %} 
 
 							<li class="nav-item active mt-lg-0 mt-3">
 								<a class="nav-link" href="/">Home
@@ -98,14 +98,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>
                                 </div>
                             </li>
+							
 							<li class="nav-item mx-lg-4 my-lg-0 my-3">
-								<a class="nav-link" href=" ">Complaints</a>
+								<a class="nav-link" href="/v_comp">View Complaints</a>
 							</li>
 							<li class="nav-item mx-lg-4 my-lg-0 my-3">
 								<a class="nav-link" href=" ">Image Bookings</a>
 							</li>;&nbsp;
 							<li class="nav-item">
-								<a class="nav-link" href=" ">Logout</a>
+								<a class="nav-link" href="/logout">Logout</a>
 							</li>
 
 							{% elif session['ut'] == "User" %}

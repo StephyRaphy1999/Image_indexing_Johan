@@ -59,6 +59,7 @@ def registration():
 
     if request.method == 'POST':
         name = request.form['name']
+        print(name)
         age = request.form['age']
         dob=request.form['dob']
         number = request.form['number']
@@ -83,17 +84,22 @@ def registration():
 
 from flask_login import current_user, logout_user, login_required
 
+@app.route('/logout')
 @login_required
-@app.route('/Logout')
 def logout():
-    print("------------1------------")
-    if current_user.is_authenticated:
-        print("--------------2------------------")
-        user_id = current_user.id  # Assuming your User model has an 'id' attribute
-        session["uid"] = user_id
+    try:
         logout_user()
-    return redirect('/')
+        session.clear()  # Clear the session data
+        print("Logout successful")
+        return redirect('/')  # Redirect to the home page or another page after logout
+    except Exception as e:
+        print("Logout failed with error:", str(e))
+        return redirect('/')
 
+
+
+
+# //Admin functions//
 @login_required
 @app.route('/v_users')
 def vw_users():
@@ -142,9 +148,43 @@ def reject_contributor(id):
     r_sendmail(c.email)
     return redirect('/v_contributor')
 
+@login_required
+@app.route('/complaints',methods=['GET', 'POST'])
+def complaints():
+    uid = current_user.id
+    if request.method == 'POST':
+        sub = request.form['sub']
+        message = request.form['message']
+        my_data = complaint(sub=sub,message=message,userid=uid)
+        db.session.add(my_data) 
+        db.session.commit()
+        return render_template("complaints.html",alert=True)
+
+    return render_template("complaints.html")
+
+@login_required
+@app.route('/v_comp')
+def vw_complaints():
+    a = complaint.query.filter_by(status="NULL").all()
+    return render_template("viewcomplaints.html",a=a)
+
+@login_required
+@app.route('/response/<int:id>',methods=['GET', 'POST'])
+def response(id):
+    c= complaint.query.get_or_404(id)
+    if request.method == 'POST':
+        c.response =request.form['response']
+        c.status="responded"
+        db.session.commit()
+        return redirect('/v_comp')
+    return render_template("response.html")
+
+
+# //Admin functions//
+
 def r_sendmail(email):
     msg = Message('Registeration Rejected',recipients=[email])
-    msg.body = f''' Sorry , Your  Registeration is rejected. '''
+    msg.body = f''' Sorry , Your  Registeration is rejected.'''
     mail.send(msg)
 
 
