@@ -33,5 +33,13 @@ class complaint(db.Model, UserMixin):
     message = db.Column(db.String(200))
     response = db.Column(db.String (200))
     status=db.Column(db.String(80),default='NULL')
+
+class image(db.Model, UserMixin):
+    id=db.Column(db.Integer, primary_key=True)
+    image=db.Column(db.String(80))
+    title=db.Column(db.String(80))
+    imgtype=db.Column(db.String(80))
+    rate=db.Column(db.Integer)
+
    
   

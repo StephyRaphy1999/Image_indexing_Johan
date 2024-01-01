@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% if alert %}
+        <script>
+            alert("Image added!!!!")
+        </script>
+    {% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+
+    <style>
+        
+         .new_img
+        {
+            border-style: none;
+            border-width: 2px;
+            width: 30%;
+            height: 200px;
+            margin: 0px 0px 0px 520px;
+            text-align: center;
+            padding: auto;
+        }
+        .imgdetails
+        {
+            border-style: none;
+            border-width: 2px;
+            float: initial;
+            width: 40%;
+            height: 200px;
+            text-align: center;
+            margin: 0px 0px 0px 435px;
+        }
+        .ifYes
+        {
+            float: initial;
+        }
+        input[type="text"],  input[type="number"],.imgtype
+        {
+            width: 50%;
+            padding: 10px 10px;
+            margin: 2px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            background: black;
+            color: #5d5a5a;
+            font-size: large;
+        }
+        input[type="file"]
+        {
+            width: 53%;
+            padding: 10px 10px;
+            margin: 2px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            background: black;
+            color: #5d5a5a;
+            font-size: large;
+        }
+        input[type=submit]
+        {
+            background-color: #ff4f81;
+             color: white;
+             padding: 14px 20px;
+             margin: 8px 0;
+             border: none;
+             cursor: pointer;
+             width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+    
+        <div class="new_img">
+            <img src="../static/images/upload.jpg" width="100" height="100"><br>&nbsp;&nbsp;<br>
+            <input type="file" name="newimg" style="color: aliceblue;">
+        </div><br>
+        
+                <div class="imgdetails">
+                    <label for="title" style="color: #5d5a5a;"><b>Title</b></label>
+                    <input type="text" name="title" placeholder="enter the title for your image"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <select name="imgtype" class="imgtype" onchange="amt()" id="imgtype">
+                        <option value="">Image Type</option>
+                        <option value="premium">Premium</option>
+                        <option value="public">Public</option>
+                    </select><br><br>
+                    <div id="ifYes" style="display: none;" class="ifYes">
+                        <label for="rate" style="color: #5d5a5a;"><b>Rate</b></label> 
+                        <input type="number"  name="rate"><br>
+                    </div><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="Add">
+                </div> 
+                 </form>  
+     
+
+    <script type="text/JavaScript">
+       
+        // function amt() 
+        // {
+           
+        //      var a=document.getElementById("imgtype").value;
+        //      if(a=="premium")
+        //      {
+        //         document.getElementById("ifYes").style.display = "block";
+        //      }
+        //      else
+        //      {
+        //         document.getElementById("ifYes").style.display = "none";
+        //      }
+            
+        // }
+
+
+        $(document).ready(function(){
+            $("select[name=imgtype]").on("change",function(){
+                val=  $("select[name=imgtype]").val();
+                (val=="premium")?$("#ifYes").show():$("#ifYes").hide();
+            })
+        })
+    </script>
+</body>
+</html>
+
+{% endblock %}

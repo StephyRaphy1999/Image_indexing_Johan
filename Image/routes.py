@@ -4,6 +4,7 @@ from Image.models import *
 from flask_login import login_user, current_user, logout_user, login_required
 from random import randint
 import os
+import PIL
 from PIL import Image
 from flask_session import Session
 from flask import session
@@ -68,17 +69,18 @@ def registration():
         utype = request.form['utype']
         
         image = request.files['image']
+        print(image)
         pic_file = save_to_uploads(image)
         view = pic_file
         a = register.query.filter_by(email=email).first()
         if a:
-            return render_template("Register.html",alert=True)
+            return render_template("Register.html")
         else:
 
             my_data = register(name=name,age=age,dob=dob,email=email,number=number,password=password,image=view,utype=utype)
             db.session.add(my_data) 
             db.session.commit()
-            return render_template("login.html",alert=True)
+            return render_template("Register.html",alert=True)
 
     return render_template("Register.html")
 
@@ -182,6 +184,27 @@ def response(id):
 
 # //Admin functions//
 
+#//contributor functions
+@login_required
+@app.route('/add_img',methods=['GET', 'POST'])
+def add_image():
+    if request.method == 'POST':
+        # image = request.form['image']
+        # pic_file = save_to_uploads(image)
+        # view = pic_file
+
+        title = request.form['title']
+        imgtype= request.form['imgtype']
+        rate= request.form['rate']
+        my_data = image(title=title,imgtype=imgtype,rate=rate)
+        db.session.add(my_data) 
+        db.session.commit()
+        return render_template("addimage.html",alert=True)
+    return render_template("addimage.html")
+
+
+#//contributor functions
+
 def r_sendmail(email):
     msg = Message('Registeration Rejected',recipients=[email])
     msg.body = f''' Sorry , Your  Registeration is rejected.'''
@@ -203,7 +226,7 @@ def save_to_uploads(form_picture):
     picture_path = os.path.join(app.root_path, 'static/uploads', picture_fn)
     
     output_size = (500, 500)
-    i = Image.open(form_picture)
+    i = PIL.Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)
     return picture_fn
