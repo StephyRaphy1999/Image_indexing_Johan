@@ -7,6 +7,14 @@
             alert("Email id already exist!!!!!")
         </script>
     {% endif %}
+
+	{% if acc %}
+        <script>
+            alert("Account created successfully!!!!!")
+        </script>
+    {% endif %}
+
+
 </head>
 
 
@@ -43,20 +51,28 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<form method="post" enctype="multipart/form-data">
 				<input placeholder="Name" name="name" class="name" type="text" required="">
 					<span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span><br>
+
 				<input placeholder="Age" name="age" class="Age" type="text" required="">
 					<span class="icon2"><i class="fa fa-user" aria-hidden="true"></i></span><br>
+
                 <input placeholder="Date of birth" name="dob" class="Dob" type="text" required="">
                      <span class="icon3"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span><br>
+
 				<input placeholder="Phone Number" name="number" class="number" type="text" required="">
                      <span class="icon4"><i class="fa fa-phone" aria-hidden="true"></i></span><br>
+
 				<input placeholder="Email" name="email" class="mail" type="text" required="">
 					<span class="icon5"><i class="fa fa-envelope" aria-hidden="true"></i></span><br>
+
 				<input  placeholder="Password" name="password" class="pass" type="password" required="">
 					<span class="icon6"><i class="fa fa-unlock" aria-hidden="true"></i></span><br>
+
 				<input  placeholder="Confirm Password" name="cpassword" class="pass" type="password" required="">
 					<span class="icon7"><i class="fa fa-unlock" aria-hidden="true"></i></span><br>
+					
 				<input  placeholder="Upload a profile pic" name="image" class="propic" type="file" required="">
 					<span class="icon8"><i class="fa fa-file-image-o" aria-hidden="true"></i></span><br>
+
 				<select name="utype" class="utype">
 					<option value="">User type</option>
 					<option value="Contributor">Contributor</option>

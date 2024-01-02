@@ -25,7 +25,7 @@ def login():
         email=request.form['email']
         password=request.form['password']
         admin = register.query.filter_by(email=email, password=password,utype= 'admin').first()
-        contributor=register.query.filter_by(email=email,password=password, utype= 'Contributor').first()
+        contributor=register.query.filter_by(email=email,password=password, utype= 'Contributor',status='approve').first()
         user=register.query.filter_by(email=email,password=password, utype= 'User').first()
 
         if admin:
@@ -74,13 +74,13 @@ def registration():
         view = pic_file
         a = register.query.filter_by(email=email).first()
         if a:
-            return render_template("Register.html")
+            return render_template("Register.html",aler=True)
         else:
 
-            my_data = register(name=name,age=age,dob=dob,email=email,number=number,password=password,image=view,utype=utype)
+            my_data = register(image=view,name=name,age=age,dob=dob,email=email,number=number,password=password,utype=utype)
             db.session.add(my_data) 
             db.session.commit()
-            return render_template("Register.html",alert=True)
+            return render_template("Register.html",acc=True)  
 
     return render_template("Register.html")
 
@@ -188,19 +188,81 @@ def response(id):
 @login_required
 @app.route('/add_img',methods=['GET', 'POST'])
 def add_image():
+    uid = current_user.id
     if request.method == 'POST':
-        # image = request.form['image']
-        # pic_file = save_to_uploads(image)
-        # view = pic_file
+        file = request.files['image']
+        pic_file = save_to_uploads(file)
+        view = pic_file
+        print(view)
 
         title = request.form['title']
         imgtype= request.form['imgtype']
         rate= request.form['rate']
-        my_data = image(title=title,imgtype=imgtype,rate=rate)
+        my_data = image(title=title,image=view,imgtype=imgtype,rate=rate,userid=uid)
         db.session.add(my_data) 
         db.session.commit()
         return render_template("addimage.html",alert=True)
     return render_template("addimage.html")
+
+@login_required
+@app.route('/add_contest',methods=['GET', 'POST'])
+def add_con():
+    uid = current_user.id
+    if request.method == 'POST':
+        title = request.form['title']
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']
+        rules = request.form['rules']
+        details = request.form['details']
+        image = request.files['image']
+        pic_file = save_to_uploads(image)
+        view = pic_file
+        prize_1 = request.form['prize_1']
+        prize_2 = request.form['prize_2']
+        prize_3 = request.form['prize_3']
+
+        
+        my_data = contest(userid=uid,title=title,start_date=start_date,end_date=end_date, rules= rules,image=view,details=details,prize_1=prize_1,prize_2=prize_2,prize_3=prize_3)
+        db.session.add(my_data) 
+        db.session.commit()
+        return render_template("contestadd.html",alert=True)
+    return render_template("contestadd.html")
+
+
+@login_required
+@app.route('/v_image')
+def v_image():
+    uid = current_user.id
+    a = image.query.filter_by(userid=uid).all()
+    return render_template("view_image.html",a=a)
+   
+@login_required
+@app.route('/edit_img/<int:id>',methods=['GET', 'POST'])
+def edit_profile(id):
+    a = image.query.filter_by(id=id).first() 
+    if request.method == 'POST':
+        a.title = request.form['title']
+        a.imgtype = request.form['imgtype']
+        a.rate = request.form['rate']
+        image = request.files['image']
+        pic_file = save_to_uploads(image)
+        view = pic_file
+        a.image = view
+        db.session.commit()
+        return render_template("edit_image.html",a=a,alert=True) 
+    else :
+        return render_template("edit_image.html",a=a)
+
+@app.route('/delete_image/<int:id>')
+@login_required
+def delete_contest(id):
+    delete = image.query.get_or_404(id)
+    try:
+        db.session.delete(delete)
+        db.session.commit()
+        return redirect('/v_image') 
+    except:
+        return 'There was a problem deleting that task'
 
 
 #//contributor functions

@@ -36,10 +36,25 @@ class complaint(db.Model, UserMixin):
 
 class image(db.Model, UserMixin):
     id=db.Column(db.Integer, primary_key=True)
+    userid= db.Column(db.Integer,ForeignKey('register.id'))
     image=db.Column(db.String(80))
     title=db.Column(db.String(80))
     imgtype=db.Column(db.String(80))
     rate=db.Column(db.Integer)
 
+class contest(db.Model, UserMixin):
+    id=db.Column(db.Integer, primary_key=True)
+    userid= db.Column(db.Integer,ForeignKey('register.id'))
+    title= db.Column(db.String(80))
+    start_date= db.Column(db.String(80))
+    end_date= db.Column(db.String(80))
+    rules = db.Column(db.String(200))
+    details= db.Column(db.String(200))
+    image=db.Column(db.String(80))
+    prize_1=db.Column(db.String(80))
+    prize_2=db.Column(db.String(80))
+    prize_3=db.Column(db.String(80))
+
+    
    
   
