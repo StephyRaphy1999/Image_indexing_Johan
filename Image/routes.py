@@ -184,6 +184,7 @@ def response(id):
 
 # //Admin functions//
 
+
 #//contributor functions
 @login_required
 @app.route('/add_img',methods=['GET', 'POST'])
@@ -238,24 +239,24 @@ def v_image():
    
 @login_required
 @app.route('/edit_img/<int:id>',methods=['GET', 'POST'])
-def edit_profile(id):
+def edit_image(id):
     a = image.query.filter_by(id=id).first() 
     if request.method == 'POST':
         a.title = request.form['title']
         a.imgtype = request.form['imgtype']
         a.rate = request.form['rate']
-        image = request.files['image']
-        pic_file = save_to_uploads(image)
-        view = pic_file
-        a.image = view
+        a.image = request.files['image']
+        pic_file = save_to_uploads(a.image)
+        a.image = pic_file
+        
         db.session.commit()
         return render_template("edit_image.html",a=a,alert=True) 
     else :
         return render_template("edit_image.html",a=a)
 
-@app.route('/delete_image/<int:id>')
 @login_required
-def delete_contest(id):
+@app.route('/delete_image/<int:id>')
+def delete_image(id):
     delete = image.query.get_or_404(id)
     try:
         db.session.delete(delete)
@@ -264,19 +265,68 @@ def delete_contest(id):
     except:
         return 'There was a problem deleting that task'
 
+@login_required
+@app.route('/vw_contest')
+def view_con():
+    uid = current_user.id
+    a = contest.query.filter_by(userid=uid).all()
+    return render_template("view_contest.html",a=a)
+
+@login_required
+@app.route('/edit_con/<int:id>',methods=['GET', 'POST'])
+def edit_contest(id):
+    a = contest.query.filter_by(id=id).first() 
+    if request.method == 'POST':
+        a.title = request.form['title']
+        a.start_date = request.form['start_date']
+        a.end_date = request.form['end_date']
+        a.rules = request.form['rules']     
+        a.details = request.form['details']
+        a.prize_1 = request.form['prize_1']
+        a.prize_2 = request.form['prize_2']
+        a.prize_3 = request.form['prize_3']
+
+        db.session.commit()
+        return render_template("edit_contest.html",a=a,alert=True) 
+    else :
+        return render_template("edit_contest.html",a=a)
+
+
+@login_required
+@app.route('/delete_contest/<int:id>')
+def delete_contest(id):
+    delete = contest.query.get_or_404(id)
+    try:
+        db.session.delete(delete)
+        db.session.commit()
+        return redirect('/vw_contest') 
+    except:
+        return 'There was a problem deleting that task'
+
+@login_required
+@app.route('/vw_profile')
+def view_profile():
+    a =  register.query.filter_by(id=current_user.id).first()
+    return render_template("view_profile.html",a=a)
+
 
 #//contributor functions
+
+
+# user functions
+
+@login_required
+@app.route('/view_contest')
+def view_contest():
+    a = contest.query.all()
+    return render_template("view_contest.html",a=a)
+
+# user functions
 
 def r_sendmail(email):
     msg = Message('Registeration Rejected',recipients=[email])
     msg.body = f''' Sorry , Your  Registeration is rejected.'''
     mail.send(msg)
-
-
-
-
-
-
 
 
 

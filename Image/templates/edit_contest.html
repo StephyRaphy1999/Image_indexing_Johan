@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% if alert %}
+        <script>
+            alert("Contest Edited!!!!")
+        </script>
+{% endif %}
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Space Register Form Flat Responsive Widget Template :: w3layouts</title>
+ 
+	<!-- Meta-Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Space Register Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //Meta-Tags -->
+
+	<!-- css files -->
+	<link href="../static/contest/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- css files -->
+
+	<!-- Online-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+	<!-- //Online-fonts -->
+
+</head>
+<body>
+
+	<!-- Main Content -->
+	<div class="main">
+		<div class="main-w3l">
+			<h1 class="logo-w3" style="color: #656061;">Space To Add A Contest</h1>
+			<div class="w3layouts-main">
+				<h2 style="color: #656061;"><span>Add now</span></h2>
+					<form enctype="multipart/form-data" method="post">
+						<input placeholder="Title" name="title" type="text" required="" value="{{a.title}}">
+						<input placeholder="Start Date" name="start_date" type="date" required="" value="{{a.start_date}}">
+						<input placeholder="End Date" name="end_date" type="date" required="" value="{{a.end_date}}">
+						<textarea placeholder="Rules" class="txtarea" name="rules" value="{{a.rules}}"></textarea>
+						<textarea placeholder="Details" class="txtarea" name="details" value="{{a.details}}"></textarea>
+						<input type="file" name="image" required="" disabled>
+						<input placeholder="First Prize" name="prize_1" type="text" required="" value="{{a.prize_1}}">
+						<input placeholder="Second Prize" name="prize_2" type="text" required="" value="{{a.prize_2}}">
+						<input placeholder="Third Prize" name="prize_3" type="text" required="" value="{{a.prize_3}}">
+						<input type="submit" value="ADD">
+					</form>
+			</div>
+			<!-- //main -->
+			
+		</div>
+	</div>
+	<!-- //Main Content -->
+
+</body>
+</html>
+
+{% endblock %}

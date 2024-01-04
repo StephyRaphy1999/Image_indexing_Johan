@@ -74,15 +74,21 @@
              cursor: pointer;
              width: 20%;
         }
+        #img
+        {
+            margin-left: 608px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
-    <form action="" method="post">
+    <form enctype="multipart/form-data" method="post">
         <div class="new_img">
-            <!-- <img src="../static/images/upload.jpg" width="100" height="100"><br>&nbsp;&nbsp;<br>
-            <input type="file" name="newimg" style="color: aliceblue;"> -->
+            <img src="../static/images/upload.jpg" width="100" height="100"><br>&nbsp;&nbsp;<br>
+            <input type="file" name="image" style="color: aliceblue;" value="../static/uploads/{{a.image}}">
+           
         </div><br>
-              
+        <img src="../static/uploads/{{a.image}}" id="img"  width="300" height="200">
                 <div class="imgdetails">
                     <label for="title" style="color: #5d5a5a;"><b>Title</b></label>
                     <input type="text" name="title" placeholder="enter the title for your image" value="{{a.title}}"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
