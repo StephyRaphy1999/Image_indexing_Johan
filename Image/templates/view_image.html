@@ -17,17 +17,18 @@
     <style>
         .main
         {
-            width: 90%;
+            width: 100%;
         }
         
         .card 
         {
           box-shadow: 0 4px 8px 0 rgba(233, 228, 228, 0.2);
           transition: 0.0s;
-          width: 30%;
+          width: 24%;
           float: left;
           background: rgb(72, 71, 71);
-          margin-left: 10px;
+          margin-left: 12px;
+          margin-bottom: 20px;
         }
 
         .container_img
@@ -36,14 +37,16 @@
           text-align: center;
         }
 
-        img
+        .gallery
         {
             padding: 12px;
+            width: 100px;
+            height: 300px;
         }
 
         .btn
         {
-            width: 20%;
+            width: 30%;
             background-color: rgb(36, 36, 36);
             color: antiquewhite;
         }
@@ -61,15 +64,25 @@
 
             <div class="main">
                 <div class="card">
-                <img src="../static/uploads/{{i.image}}" alt="Avatar" style="width:100%">
+                <img src="../static/uploads/{{i.image}}" alt="Avatar" style="width:100%" class="gallery">
                 <div class="container_img">
                     <h4><b>Rate:{{i.rate}}</b></h4>
                     <h5>Type:{{i.imgtype}}</h5>
                     <h6>Title:{{i.title}}</h6> 
 
                     <div class="buttons">
-                        <button type="button" class="btn"><a href="/edit_img/{{i.id}}">Edit</a></button>
-                        <button type="button" class="btn"><a href="/delete_image/{{i.id}}">Delete</a></button>
+                        {% if session['ut'] == "Contributor" %}
+
+                        <!-- <button type="button" class="btn"><a href="/edit_img/{{i.id}}">Edit</a></button> -->
+                        <a href="/edit_img/{{i.id}}"><button class="btn">Edit</button></a>
+                        <a href="/delete_image/{{i.id}}"><button type="button" class="btn">Delete</button></a>
+
+                        {% elif session['ut'] == "User" %}
+
+                        <a href="/payment/{{i.id}}"><button type="button" class="btn">Download</button></a>
+
+                        {% endif %}
+                        
                     </div>
                 </div>
                 </div>

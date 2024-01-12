@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Contest Entry</title>
+      <link rel="stylesheet" href="../static/reg_contest/css/style_regcon.css">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="title">
+            Contest Entry
+         </div>
+         <form method="post" enctype="multipart/form-data">
+            <div class="field">
+               <input type="file" name="image" required>
+            </div><br>
+            <div class="field">
+               <input type="submit" value="Submit">
+            </div>
+         </form>
+      </div>
+   </body>
+</html>
+
+
+{% endblock %}

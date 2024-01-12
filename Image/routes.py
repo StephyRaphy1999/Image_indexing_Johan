@@ -10,6 +10,7 @@ from flask_session import Session
 from flask import session
 from flask_login import LoginManager
 from flask_mail import Message
+from datetime import datetime
 
 @app.route('/about')
 def about():
@@ -178,7 +179,7 @@ def response(id):
         c.response =request.form['response']
         c.status="responded"
         db.session.commit()
-        return redirect('/v_comp')
+        return render_template('viewcomplaints.html',alert=True)
     return render_template("response.html")
 
 
@@ -310,6 +311,14 @@ def view_profile():
     return render_template("view_profile.html",a=a)
 
 
+@login_required
+@app.route('/vw_comp')
+def view_complaints():
+    uid=current_user.id
+    a = complaint.query.filter_by(userid=uid).all()
+    return render_template("viewcomplaints.html",a=a)
+
+
 #//contributor functions
 
 
@@ -321,6 +330,44 @@ def view_contest():
     a = contest.query.all()
     return render_template("view_contest.html",a=a)
 
+@login_required
+@app.route('/view_image')
+def view_image():
+    a = image.query.all()
+    return render_template("view_image.html",a=a)
+
+
+@login_required
+@app.route('/payment_contest/<int:id>')
+def payment(id):
+    contest_id=contest.query.filter_by(id=id).first()
+    c=contest_id.id
+    return render_template("payment.html",c=c)
+
+
+@login_required
+@app.route('/reg_contest/<int:id>',methods=['GET', 'POST'])
+def reg_contest(id):
+    contest_id=contest.query.filter_by(id=id).first()
+    uid=current_user.id
+    if request.method == 'POST':
+        image = request.files['image']
+        pic_file = save_to_uploads(image)
+        view = pic_file
+        status='paid'
+        date = datetime.now()
+        print(date)
+
+
+        my_data = contest_entry(userid=uid,contest_id=contest_id.id,image=view,status=status,date=date)
+        db.session.add(my_data)
+        db.session.commit()
+        return redirect('/',alert=True)
+
+    return render_template("reg_contest.html")
+
+
+       
 # user functions
 
 def r_sendmail(email):

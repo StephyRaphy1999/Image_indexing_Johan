@@ -1,13 +1,19 @@
 {%extends 'layout.html'%}
 {%block content%}
 
+{% if alert %}
+        <script>
+            alert("Responded")
+        </script>
+    {% endif %}
+
 <div class="newsletter_right_w3agile py-5" id="newsletter">
     <div class="container py-xl-5 py-lg-3">
         <!-- heading title -->
         <div class="main-title text-center mb-5">
             <h3 class="tittle text-uppercase text-white font-weight-bold">Registered Complaints</h3>
             <div class="title-icon">
-                <i class="fas fa-camera"></i>
+                <i class="fas fa-camera"></i>  
             </div>
             
         </div>
@@ -21,6 +27,9 @@
                             <th>User type</th>
                             <th>Subject</th>
                             <th>Message</th>
+                            {% if session['ut'] == "Contributor" %}
+                            <th>Response</th>
+                            {% endif %}
                         </tr>
                     </thead>
                 <tbody>
@@ -34,9 +43,13 @@
                     <td>{{i.userid.name}}</td>          
                     <td>{{i.sub}}</td>
                     <td>{{i.message}}</td>
+                    {% if session['ut'] == "admin" %} 
                     <td class="text-center"><a class='btn btn-info btn-xs' href="/response/{{i.id}}">
                         <span class="glyphicon glyphicon-edit"></span> Response</a>
                     </td>
+                    {% elif session['ut'] == "Contributor" %}
+                    <td>{{i.response}}</td>
+                    {% endif %}
                 </tr>       
                 {% endfor %}
                     

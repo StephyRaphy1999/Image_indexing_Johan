@@ -55,6 +55,16 @@ class contest(db.Model, UserMixin):
     prize_2=db.Column(db.String(80))
     prize_3=db.Column(db.String(80))
 
+class bookings(db.Model, UserMixin):
+    id=db.Column(db.Integer, primary_key=True)
+    userid= db.Column(db.Integer,ForeignKey('register.id'))
+    image_id= db.Column(db.Integer,ForeignKey('image.id'))
     
-   
-  
+class contest_entry(db.Model, UserMixin):
+    id=db.Column(db.Integer, primary_key=True) 
+    userid= db.Column(db.Integer,ForeignKey('register.id'))
+    contest_id= db.Column(db.Integer,ForeignKey('contest.id'))
+    image=db.Column(db.String(80))
+    date= db.Column(db.String(80))
+    status=db.Column(db.String(80),default='NULL')
+

@@ -68,8 +68,18 @@
         <h3>First Prize: {{i.prize_1}}</h3>
         <h3>Second Prize: {{i.prize_2}}</h3>
         <h3>Third Prize:{{i.prize_3}}</h3>
-        <p><button><a href="/edit_con/{{i.id}}">Edit</a></button></p>
-        <p><button><a href="/delete_contest/{{i.id}}">Delete</a></button></p>
+
+        {% if session['ut'] == "Contributor" %}
+
+        <p><a href="/edit_con/{{i.id}}"><button>Edit</button></a></p>
+        <p><a href="/delete_contest/{{i.id}}"><button>Delete</button></a></p>
+
+        {% else %}
+
+        <p><a href="/payment_contest/{{i.id}}"><button>Register</button></a></p>
+        
+        {% endif %}
+
         </div> 
 
     {% endfor %}
