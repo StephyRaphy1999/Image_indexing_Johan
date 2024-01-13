@@ -158,7 +158,7 @@ def complaints():
     if request.method == 'POST':
         sub = request.form['sub']
         message = request.form['message']
-        my_data = complaint(sub=sub,message=message,userid=uid)
+        my_data = complaint(sub=sub,message=message,user_id=uid)
         db.session.add(my_data) 
         db.session.commit()
         return render_template("complaints.html",alert=True)
@@ -200,7 +200,7 @@ def add_image():
         title = request.form['title']
         imgtype= request.form['imgtype']
         rate= request.form['rate']
-        my_data = image(title=title,image=view,imgtype=imgtype,rate=rate,userid=uid)
+        my_data = image(title=title,image=view,imgtype=imgtype,rate=rate,user_id=uid)
         db.session.add(my_data) 
         db.session.commit()
         return render_template("addimage.html",alert=True)
@@ -224,7 +224,7 @@ def add_con():
         prize_3 = request.form['prize_3']
 
         
-        my_data = contest(userid=uid,title=title,start_date=start_date,end_date=end_date, rules= rules,image=view,details=details,prize_1=prize_1,prize_2=prize_2,prize_3=prize_3)
+        my_data = contest(user_id=uid,title=title,start_date=start_date,end_date=end_date, rules= rules,image=view,details=details,prize_1=prize_1,prize_2=prize_2,prize_3=prize_3)
         db.session.add(my_data) 
         db.session.commit()
         return render_template("contestadd.html",alert=True)
@@ -235,7 +235,7 @@ def add_con():
 @app.route('/v_image')
 def v_image():
     uid = current_user.id
-    a = image.query.filter_by(userid=uid).all()
+    a = image.query.filter_by(user_id=uid).all()
     return render_template("view_image.html",a=a)
    
 @login_required
@@ -270,7 +270,7 @@ def delete_image(id):
 @app.route('/vw_contest')
 def view_con():
     uid = current_user.id
-    a = contest.query.filter_by(userid=uid).all()
+    a = contest.query.filter_by(user_id=uid).all()
     return render_template("view_contest.html",a=a)
 
 @login_required
@@ -315,8 +315,21 @@ def view_profile():
 @app.route('/vw_comp')
 def view_complaints():
     uid=current_user.id
-    a = complaint.query.filter_by(userid=uid).all()
+    a = complaint.query.filter_by(user_id=uid).all()
     return render_template("viewcomplaints.html",a=a)
+
+
+@login_required
+@app.route('/view_contest_reg')
+def view_con_reg():
+    user_id = current_user.id
+    # c= contest.query.filter_by(user_id=uid).all()
+    a=contest_entry.query.all()
+    for i in a:
+        print(i.contest_id)
+        print(i.contest_id.user_id)
+    print(a)
+    return render_template("view_registrations.html",a=a)
 
 
 #//contributor functions
@@ -359,12 +372,19 @@ def reg_contest(id):
         print(date)
 
 
-        my_data = contest_entry(userid=uid,contest_id=contest_id.id,image=view,status=status,date=date)
+        my_data = contest_entry(user_id=uid,contest_id=contest_id.id,image=view,status=status,date=date)
         db.session.add(my_data)
         db.session.commit()
-        return redirect('/',alert=True)
+        return render_template('index.html',aler=True)
 
     return render_template("reg_contest.html")
+
+@login_required
+@app.route('/vw_contest_reg')
+def view_contest_reg():
+    uid = current_user.id
+    a = contest_entry.query.filter_by(user_id=uid).all()
+    return render_template("view_registrations.html",a=a)
 
 
        

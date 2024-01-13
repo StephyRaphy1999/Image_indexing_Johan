@@ -37,10 +37,10 @@
                 {% for i in a %}
                 
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>{{i.userid.name}}</td>          
+                    <td>{{i.uid.name}}</td>
+                    <td>{{i.uid.email}}</td>
+                    <td>{{i.uid.number}}</td>
+                    <td>{{i.uid.utype}}</td>          
                     <td>{{i.sub}}</td>
                     <td>{{i.message}}</td>
                     {% if session['ut'] == "admin" %} 

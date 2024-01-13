@@ -8,6 +8,7 @@ from Image import db,app,login_manager
 from flask_login import UserMixin
 from flask_table import Table, Col, LinkCol
 from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 # from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 @login_manager.user_loader
@@ -28,7 +29,8 @@ class register(db.Model, UserMixin):
 
 class complaint(db.Model, UserMixin):
     id=db.Column(db.Integer, primary_key=True)
-    userid= db.Column(db.Integer,ForeignKey('register.id'))
+    user_id = db.Column(db.Integer, ForeignKey('register.id'))
+    uid= relationship('register',foreign_keys=[user_id])
     sub = db.Column(db.String(80))
     message = db.Column(db.String(200))
     response = db.Column(db.String (200))
@@ -36,7 +38,8 @@ class complaint(db.Model, UserMixin):
 
 class image(db.Model, UserMixin):
     id=db.Column(db.Integer, primary_key=True)
-    userid= db.Column(db.Integer,ForeignKey('register.id'))
+    user_id = db.Column(db.Integer, ForeignKey('register.id'))
+    uid= relationship('register',foreign_keys=[user_id])
     image=db.Column(db.String(80))
     title=db.Column(db.String(80))
     imgtype=db.Column(db.String(80))
@@ -44,7 +47,8 @@ class image(db.Model, UserMixin):
 
 class contest(db.Model, UserMixin):
     id=db.Column(db.Integer, primary_key=True)
-    userid= db.Column(db.Integer,ForeignKey('register.id'))
+    user_id = db.Column(db.Integer, ForeignKey('register.id'))
+    uid= relationship('register',foreign_keys=[user_id])
     title= db.Column(db.String(80))
     start_date= db.Column(db.String(80))
     end_date= db.Column(db.String(80))
@@ -57,13 +61,17 @@ class contest(db.Model, UserMixin):
 
 class bookings(db.Model, UserMixin):
     id=db.Column(db.Integer, primary_key=True)
-    userid= db.Column(db.Integer,ForeignKey('register.id'))
+    user_id = db.Column(db.Integer, ForeignKey('register.id'))
+    uid= relationship('register',foreign_keys=[user_id])
     image_id= db.Column(db.Integer,ForeignKey('image.id'))
-    
+    imid=relationship('image',foreign_keys=[image_id])
+
 class contest_entry(db.Model, UserMixin):
     id=db.Column(db.Integer, primary_key=True) 
-    userid= db.Column(db.Integer,ForeignKey('register.id'))
-    contest_id= db.Column(db.Integer,ForeignKey('contest.id'))
+    user_id = db.Column(db.Integer, ForeignKey('register.id'))
+    uid= relationship('register',foreign_keys=[user_id])
+    contest_id = db.Column(db.Integer, ForeignKey('contest.id'))
+    cid=relationship('contest',foreign_keys=[contest_id])
     image=db.Column(db.String(80))
     date= db.Column(db.String(80))
     status=db.Column(db.String(80),default='NULL')
