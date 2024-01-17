@@ -11,6 +11,7 @@ from flask import session
 from flask_login import LoginManager
 from flask_mail import Message
 from datetime import datetime
+from flask_login import current_user
 
 @app.route('/about')
 def about():
@@ -319,17 +320,18 @@ def view_complaints():
     return render_template("viewcomplaints.html",a=a)
 
 
-@login_required
 @app.route('/view_contest_reg')
+@login_required
 def view_con_reg():
     user_id = current_user.id
-    # c= contest.query.filter_by(user_id=uid).all()
-    a=contest_entry.query.all()
+    a = contest.query.filter_by(user_id=user_id).all()
+    b = []
+
     for i in a:
-        print(i.contest_id)
-        print(i.contest_id.user_id)
-    print(a)
-    return render_template("view_registrations.html",a=a)
+        contest_entries = contest_entry.query.filter_by(contest_id=i.id).all()
+        b.extend(contest_entries)
+
+    return render_template("view_registrations.html", a=a, b=b)
 
 
 #//contributor functions
@@ -385,6 +387,23 @@ def view_contest_reg():
     uid = current_user.id
     a = contest_entry.query.filter_by(user_id=uid).all()
     return render_template("view_registrations.html",a=a)
+
+
+
+@login_required
+@app.route('/payment_image/<int:id>')
+def payment(id):
+    img=image.query.filter_by(id=id).first()
+    c=img.id
+    uid=current_user.id
+    if request.method == 'POST':
+        my_data = bookings(user_id=uid,image_id=c)
+        db.session.add(my_data)
+        db.session.commit()
+        a_sendmail(uid.email)
+        
+return render_template("payment_1.html")
+
 
 
        

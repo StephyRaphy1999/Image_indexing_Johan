@@ -4,7 +4,7 @@
     margin: 0;
   }
   
-  :root {
+  /* :root {
     --purple: hsl(240, 80%, 89%);
     --pink: hsl(0, 59%, 94%);
     --light-bg: hsl(204, 37%, 92%);
@@ -12,12 +12,13 @@
     --white: hsl(0, 0%, 100%);
     --dark: hsl(0, 0%, 7%);
     --text-gray: hsl(0, 0%, 30%);
-  }
+  } */
   
   body {
     background: var(--light-bg);
     font-family: "Space Grotesk", sans-serif;
     color: var(--dark);
+    background-color: black;
   }
   
   h3 {
@@ -29,7 +30,7 @@
     font-size: 1em;
     line-height: 1.7;
     font-weight: 300;
-    color: var(--text-gray);
+    color: white;
   }
   
   .description {
@@ -42,22 +43,23 @@
   }
   
   .wrap {
-    display: flex;
+    /* display: flex; */
     /* justify: space-between; */
     align-items: stretch;
-    width: 100%;
+    width: 25%;
     gap: 24px;
     padding: 24px;
     flex-wrap: wrap;
+    float: left;
   }
   
   .box {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     flex-basis: 100%;
     position: relative;
     padding: 24px;
-    background: #fff;
+    background: #552846;
   }
   
   .box-top {
@@ -73,6 +75,7 @@
     height: 360px;
     object-fit: cover;
     object-position: 50% 20%;
+    border: solid 5px;
   }
   
   .title-flex {
@@ -82,7 +85,8 @@
   }
   
   .box-title {
-    border-left: 3px solid var(--purple);
+    border-left: 3px solid;
+    color: black;
     padding-left: 12px;
   }
   
