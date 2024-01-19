@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect,  flash, abort, url_for
+from flask import Flask, render_template, request, redirect,  flash, abort, url_for,send_file
 from Image import app,mail
 from Image.models import *
 from flask_login import login_user, current_user, logout_user, login_required
@@ -334,6 +334,20 @@ def view_con_reg():
     return render_template("view_registrations.html", a=a, b=b)
 
 
+@login_required
+@app.route('/vw_bookings')
+def view_bookings():
+    uid=current_user.id
+    a = image.query.filter_by(user_id=uid).all()
+    b= []
+
+    for i in a:
+        booking_entries=bookings.query.filter_by(image_id=i.id).all()
+        b.extend(booking_entries)
+
+    return render_template("view_bookings.html",a=a,b=b)
+
+
 #//contributor functions
 
 
@@ -388,21 +402,46 @@ def view_contest_reg():
     a = contest_entry.query.filter_by(user_id=uid).all()
     return render_template("view_registrations.html",a=a)
 
+@login_required
+@app.route('/view_bookings')
+def booking():
+    uid=current_user.id
+    a = bookings.query.filter_by(user_id=uid).all()
+    return render_template("view_bookings.html",a=a)
 
 
 @login_required
-@app.route('/payment_image/<int:id>')
-def payment(id):
+@app.route('/payment_image/<int:id>',methods=['GET', 'POST'])
+def payment_1(id):
     img=image.query.filter_by(id=id).first()
     c=img.id
     uid=current_user.id
-    if request.method == 'POST':
+    a = register.query.filter_by(id=uid).first()
+    print(a.email)
+    if request.method == 'POST':      
         my_data = bookings(user_id=uid,image_id=c)
         db.session.add(my_data)
         db.session.commit()
-        a_sendmail(uid.email)
+        email=a.email
+        i_sendmail(email)
+        a = image.query.all()
+        return render_template("view_image.html",b_alert=True,a=a)
         
-return render_template("payment_1.html")
+    return render_template("Payments_1.html")
+
+
+def i_sendmail(email):
+    msg = Message('Galleria',recipients=[email])
+    msg.body = f''' Sorry , Your  Registeration is rejected.'''
+    mail.send(msg)
+
+
+@app.route('/download/<int:id>')
+def download(id):
+    upload = image.query.filter_by(id=id).first()
+    a = upload.image
+    return  send_file("C:/Users/user/Desktop/Galleria/Image/static/uploads/"+a,as_attachment=True)
+
 
 
 
@@ -413,6 +452,7 @@ def r_sendmail(email):
     msg = Message('Registeration Rejected',recipients=[email])
     msg.body = f''' Sorry , Your  Registeration is rejected.'''
     mail.send(msg)
+
 
 
 

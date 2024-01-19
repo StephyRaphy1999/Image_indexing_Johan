@@ -2,97 +2,105 @@
 {% block content %}
 
 {% if alert %}
-        <script>
-            alert("Deleted")
-        </script>
-    {% endif %}
+    <script>
+        alert("Deleted")
+    </script>
+{% endif %}
 
+{% if b_alert %}
+    <script>
+        alert("Your transaction is being verified!!!", "<br>", "You will receive your image shortly!!!");
+    </script>
+{% endif %}
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .main
-        {
-            width: 100%;
-        }
-        
-        .card 
-        {
-          box-shadow: 0 4px 8px 0 rgba(233, 228, 228, 0.2);
-          transition: 0.0s;
-          width: 24%;
-          float: left;
-          background: rgb(72, 71, 71);
-          margin-left: 12px;
-          margin-bottom: 20px;
+        .main {
+            display: flex;
+            flex-wrap: wrap;
         }
 
-        .container_img
-        {
-          padding: 2px 16px;
-          text-align: center;
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(233, 228, 228, 0.2);
+            /* transition: 0.0s; */
+            background: rgb(72, 71, 71);
+            margin: 0 0 20px 17px;
+            flex: 0 0 calc(24.33% - 12px); 
         }
 
-        .gallery
-        {
+        .container_img {
+            padding: 2px 16px;
+            text-align: center; 
+        }
+
+        .gallery {
             padding: 12px;
             width: 100px;
             height: 300px;
         }
 
-        .btn
-        {
+        .btn {
             width: 30%;
             background-color: rgb(36, 36, 36);
             color: antiquewhite;
         }
 
-        a
-        {
-            color: aliceblue; 
+        a {
+            color: aliceblue;
         }
-        
-        </style>
-        </head>
-        <body>
-            {% for i in a %}
+    </style>
+</head>
 
+<body>
 
-            <div class="main">
-                <div class="card">
-                <img src="../static/uploads/{{i.image}}" alt="Avatar" style="width:100%" class="gallery">
-                <div class="container_img">
-                    <h4><b>Rate:{{i.rate}}</b></h4>
-                    <h5>Type:{{i.imgtype}}</h5>
-                    <h6>Title:{{i.title}}</h6> 
+    <div class="main">
+        {% for i in a %}
+        <div class="card">
+            <img src="../static/uploads/{{i.image}}" alt="Avatar" style="width:100%" class="gallery">
+            <div class="container_img">
+                {% if i.imgtype=="premium" %}
 
-                    <div class="buttons">
-                        {% if session['ut'] == "Contributor" %}
+                <h4><b>Rate:{{i.rate}}</b></h4>
 
-                        <!-- <button type="button" class="btn"><a href="/edit_img/{{i.id}}">Edit</a></button> -->
-                        <a href="/edit_img/{{i.id}}"><button class="btn">Edit</button></a>
-                        <a href="/delete_image/{{i.id}}"><button type="button" class="btn">Delete</button></a>
+                {% else %}
 
-                        {% elif session['ut'] == "User" %}
+                <h4><b>Free to download</b></h4>
 
-                        <a href="/payment_1/{{i.id}}"><button type="button" class="btn">Download</button></a>
+                {% endif %}
 
+                <h5>Type:{{i.imgtype}}</h5>
+                <h6>Title:{{i.title}}</h6>
+
+                <div class="buttons">
+                    {% if session['ut'] == "Contributor" %}
+                    <a href="/edit_img/{{i.id}}"><button class="btn">Edit</button></a>
+                    <a href="/delete_image/{{i.id}}"><button type="button" class="btn">Delete</button></a>
+                    {% elif session['ut'] == "User" %}
+
+                        {% if i.imgtype=="premium" %}
+
+                        <a href="/payment_image/{{i.id}}"><button type="button" class="btn">Download</button></a>
+
+                        {% else %}
+
+                        <a href="/download/{{i.id}}"><button type="button" class="btn">Download</button></a>
                         {% endif %}
-                        
-                    </div>
-                </div>
+
+                    {% endif %}
                 </div>
             </div>
+        </div>
+        {% endfor %}
+    </div>
 
+</body>
 
-            {% endfor %}
-        
-        </body>
-        </html> 
+</html>
 
 {% endblock %}
-        
