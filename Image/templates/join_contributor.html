@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          max-width: 400px;
+          margin: auto;
+          margin-bottom: 10px;
+          margin-left: 33px;
+          text-align: center;
+          font-family: arial;
+          background-color: #5d5a5a;
+          display:inline-flex;
+        }
+        
+        .title {
+          color: black;
+          font-size: 18px;
+        }
+        
+        button {
+          border: none;
+          outline: 0;
+          display: inline-block;
+          padding: 5px;
+          color: white;
+          background-color: #000;
+          text-align: center;
+          cursor: pointer;
+          width: 30%;
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+        
+        a {
+          text-decoration: none;
+          color: rgb(157, 149, 149);
+        }
+        
+        button:hover, a:hover {
+          opacity: 0.7;
+        }
+
+        h1
+        {
+           color:  #070707;
+        }
+
+        .imgc
+        {
+          width:500px;
+          height: 220px;
+        }
+        </style>
+</head>
+<body>
+    {% for i in a %}
+        
+        <div class="card">
+            <h1 style="text-align:center">{{i.title}}</h1> 
+            <img src="../static/uploads/{{i.image}}" alt="John" style="width:100%" class="imgc">
+            <h2>Start date: {{i.start_date}}</h2>
+            <h2>End date: {{i.end_date}}</h2>
+            <p class="title">Rules: {{i.rules}}</p>
+            <p class="title">Details: {{i.details}}</p>
+            <h3>First Prize: {{i.prize_1}}</h3>
+            <h3>Second Prize: {{i.prize_2}}</h3>
+            <h3>Third Prize:{{i.prize_3}}</h3>
+
+            <p><a href="/payment_contest/{{i.id}}"><button>Register</button></a></p>
+
+        </div> 
+
+    {% endfor %}
+
+</body>
+</html>
+
+
+{% endblock %}

@@ -37,10 +37,10 @@
 
     {% for i in a %}
 
-                <div class="wrap">
+                
                     <div class="box">
                         <div class="box-top">
-                            <img class="box-image" src="../static/uploads/{{ i.image }}">
+                            <img class="box-image" src="../static/uploads/{{ i.image }}" style="width: 300px; height: 200px;">
                             <div class="title-flex">
                                 <h3 class="box-title">Contest:{{ i.cid.title }}</h3>
                                 <p class="user-follow-info">Name:{{ i.uid.name }}</p>
@@ -50,7 +50,7 @@
                             <p class="description">End Date:{{ i.cid.end_date }}</p>
                         </div>
                     </div>
-                </div>
+               
     
     {% endfor %}
 

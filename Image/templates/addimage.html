@@ -79,21 +79,21 @@
     
         <div class="new_img">
             <img src="../static/images/upload.jpg" width="100" height="100"><br>&nbsp;&nbsp;<br>
-            <input type="file" name="image" style="color: aliceblue;"> 
+            <input type="file" name="image" style="color: aliceblue;" required> 
         </div><br>
         
                 <div class="imgdetails">
                     <label for="title" style="color: #5d5a5a;"><b>Title</b></label>
-                    <input type="text" name="title" placeholder="enter the title for your image"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="title" placeholder="enter the title for your image" required><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <select name="imgtype" class="imgtype" onchange="amt()" id="imgtype">
+                    <select name="imgtype" class="imgtype" onchange="amt()" id="imgtype" required>
                         <option value="">Image Type</option>
                         <option value="premium">Premium</option>
                         <option value="public">Public</option>
                     </select><br><br>
                     <div id="ifYes" style="display: none;" class="ifYes">
                         <label for="rate" style="color: #5d5a5a;"><b>Rate</b></label> 
-                        <input type="number"  name="rate"><br>
+                        <input type="number"  name="rate" required><br>
                     </div><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="submit" value="Add">
                 </div> 

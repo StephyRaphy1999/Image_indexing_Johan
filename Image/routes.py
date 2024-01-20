@@ -184,6 +184,13 @@ def response(id):
     return render_template("response.html")
 
 
+@login_required
+@app.route('/manage_bookings')
+def manage_bookings():
+    a=bookings.query.all()
+    return render_template("view_bookings.html",a=a)
+
+
 # //Admin functions//
 
 
@@ -347,6 +354,12 @@ def view_bookings():
 
     return render_template("view_bookings.html",a=a,b=b)
 
+@login_required
+@app.route('/join_contest')
+def vw_contest():
+    u_id=current_user.id
+    a = contest.query.filter(contest.user_id != u_id).all()
+    return render_template("join_contributor.html",a=a)
 
 #//contributor functions
 
@@ -395,12 +408,14 @@ def reg_contest(id):
 
     return render_template("reg_contest.html")
 
+
 @login_required
 @app.route('/vw_contest_reg')
 def view_contest_reg():
     uid = current_user.id
     a = contest_entry.query.filter_by(user_id=uid).all()
     return render_template("view_registrations.html",a=a)
+
 
 @login_required
 @app.route('/view_bookings')
@@ -434,6 +449,7 @@ def i_sendmail(email):
     msg = Message('Galleria',recipients=[email])
     msg.body = f''' Sorry , Your  Registeration is rejected.'''
     mail.send(msg)
+
 
 
 @app.route('/download/<int:id>')

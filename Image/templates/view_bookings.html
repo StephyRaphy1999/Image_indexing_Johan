@@ -77,11 +77,39 @@
 
                     {% endfor %}
 
-
-                    {% endif %}
-
                 </tbody>
                 </table>
+                    
+                    {% elif session['ut'] == "admin" %}
+                    <table class="table table-striped table-bordered" style="color: #ffff;">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Buyer Name</th>
+                                <th>Email</th>
+                                <th>Number</th>
+                                <th>Image Price</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                        {% for i in a %}
+                                <tr>            
+                                    <td><img src="../static/uploads/{{i.imid.image}}" class="image"></td>
+                                    <td>{{i.uid.name}}</td>
+                                    <td>{{i.uid.email}}</td>
+                                    <td>{{i.uid.number}}</td>
+                                    <td>{{i.imid.rate}}</td>
+                                </tr>       
+                        
+                        {% endfor %}
+
+                    
+                    {% endif %}
+
+                    </tbody>
+                    </table>
+
+            
         
     </div>
     </div>
