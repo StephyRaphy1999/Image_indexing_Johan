@@ -5,6 +5,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from random import randint
 import os
 import PIL
+import secrets
 from PIL import Image
 from flask_session import Session
 from flask import session
@@ -53,16 +54,35 @@ def login():
             login_user(user)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect('/')  
-        else:
-            return render_template("Login.html")
+        else: 
+            return render_template("Login.html",alert=True)
     return render_template("Login.html")
+
+@app.route('/forgot',methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form['email']
+        a = register.query.filter_by(email=email).first()
+        password_length = 4
+        password=secrets.token_urlsafe(password_length)
+        f_sendmail(email,password)
+        a.password=password
+
+        db.session.commit()
+        return render_template("index.html",b_alert=True)
+    return render_template("forgot_pass.html")
+
+
+def f_sendmail(email,password):
+    msg = Message('New password',recipients=[email])
+    msg.body = f'Your new password is:{password}'
+    mail.send(msg)
 
 @app.route('/register',methods=['GET', 'POST'])
 def registration():
 
     if request.method == 'POST':
         name = request.form['name']
-        print(name)
         age = request.form['age']
         dob=request.form['dob']
         number = request.form['number']
@@ -76,7 +96,7 @@ def registration():
         view = pic_file
         a = register.query.filter_by(email=email).first()
         if a:
-            return render_template("Register.html",aler=True)
+            return render_template("Register.html",alert=True)
         else:
 
             my_data = register(image=view,name=name,age=age,dob=dob,email=email,number=number,password=password,utype=utype)
@@ -224,6 +244,7 @@ def add_con():
         end_date = request.form['end_date']
         rules = request.form['rules']
         details = request.form['details']
+        entry_fee = request.form['rate']
         image = request.files['image']
         pic_file = save_to_uploads(image)
         view = pic_file
@@ -232,7 +253,7 @@ def add_con():
         prize_3 = request.form['prize_3']
 
         
-        my_data = contest(user_id=uid,title=title,start_date=start_date,end_date=end_date, rules= rules,image=view,details=details,prize_1=prize_1,prize_2=prize_2,prize_3=prize_3)
+        my_data = contest(user_id=uid,title=title,start_date=start_date,end_date=end_date, rules= rules,entry_fee=entry_fee,image=view,details=details,prize_1=prize_1,prize_2=prize_2,prize_3=prize_3)
         db.session.add(my_data) 
         db.session.commit()
         return render_template("contestadd.html",alert=True)
@@ -254,8 +275,8 @@ def edit_image(id):
         a.title = request.form['title']
         a.imgtype = request.form['imgtype']
         a.rate = request.form['rate']
-        a.image = request.files['image']
-        pic_file = save_to_uploads(a.image)
+        images = request.files['image']
+        pic_file = save_to_uploads(images)
         a.image = pic_file
         
         db.session.commit()
@@ -291,6 +312,7 @@ def edit_contest(id):
         a.end_date = request.form['end_date']
         a.rules = request.form['rules']     
         a.details = request.form['details']
+        a.entry_fee=request.form['rate']
         a.prize_1 = request.form['prize_1']
         a.prize_2 = request.form['prize_2']
         a.prize_3 = request.form['prize_3']
@@ -457,12 +479,10 @@ def download(id):
     upload = image.query.filter_by(id=id).first()
     a = upload.image
     return  send_file("C:/Users/user/Desktop/Galleria/Image/static/uploads/"+a,as_attachment=True)
-
-
-
-
-       
+ 
 # user functions
+
+
 
 def r_sendmail(email):
     msg = Message('Registeration Rejected',recipients=[email])

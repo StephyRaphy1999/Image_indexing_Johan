@@ -55,10 +55,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<input placeholder="End Date" name="end_date" type="date" required="" value="{{a.end_date}}">
 						<textarea placeholder="Rules" class="txtarea" name="rules" value="{{a.rules}}"></textarea>
 						<textarea placeholder="Details" class="txtarea" name="details" value="{{a.details}}"></textarea>
+						<input type="number"  name="rate" placeholder="Entry Fee" required value="{{a.entry_fee}}">
 						<input type="file" name="image" required="" disabled>
-						<input placeholder="First Prize" name="prize_1" type="text" required="" value="{{a.prize_1}}">
-						<input placeholder="Second Prize" name="prize_2" type="text" required="" value="{{a.prize_2}}">
-						<input placeholder="Third Prize" name="prize_3" type="text" required="" value="{{a.prize_3}}">
+						<input placeholder="First Prize" name="prize_1" type="number" required="" value="{{a.prize_1}}">
+						<input placeholder="Second Prize" name="prize_2" type="number" required="" value="{{a.prize_2}}">
+						<input placeholder="Third Prize" name="prize_3" type="number" required="" value="{{a.prize_3}}">
 						<input type="submit" value="ADD">
 					</form>
 			</div>

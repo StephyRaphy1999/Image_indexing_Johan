@@ -92,7 +92,7 @@ body {
 
 /*--//icons--*/
 
-.sub-main input[type="text"],.sub-main input[type="password"],.sub-main input[type="file"],.utype{
+.sub-main input[type="text"],.sub-main input[type="password"],.sub-main input[type="file"],.sub-main input[type="date"],.sub-main input[type="number"],.utype{
     outline: none;
     font-size: 1.1em;
     margin: 4px 0px 18px 1px;
@@ -132,6 +132,13 @@ body {
 	-ms-transition:0.5s all;
 }
 
+::-webkit-calendar-picker-indicator {
+    filter: invert(1)
+            brightness(50%)
+            sepia(100%)
+            saturate(10000%)
+            hue-rotate(900deg)
+}
 /*--//main--*/
 
 /*--footer--*/

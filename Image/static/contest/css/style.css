@@ -94,7 +94,7 @@ h1.logo-w3  {
 .w3layouts-main{
 	padding: 40px 30px;
 }
-input[type="text"], input[type="email"], input[type="password"], input[type="date"],input[type="file"],.txtarea{
+input[type="text"], input[type="email"], input[type="password"], input[type="date"],input[type="file"],input[type="number"],.txtarea{
     width: 100%; 
     width: 100%;
     padding: 15px;

@@ -81,11 +81,27 @@
                     {% if session['ut'] == "Contributor" %}
                     <a href="/edit_img/{{i.id}}"><button class="btn">Edit</button></a>
                     <a href="/delete_image/{{i.id}}"><button type="button" class="btn">Delete</button></a>
+                   
                     {% elif session['ut'] == "User" %}
 
                         {% if i.imgtype=="premium" %}
 
+
                         <a href="/payment_image/{{i.id}}"><button type="button" class="btn">Download</button></a>
+
+                        {% else %}
+
+                        <a href="/download/{{i.id}}"><button type="button" class="btn">Download</button></a>
+                        {% endif %}
+
+
+
+                    {% else %}
+
+                        {% if i.imgtype=="premium" %}
+
+
+                        <a href="/register"><button type="button" class="btn">Download</button></a>
 
                         {% else %}
 

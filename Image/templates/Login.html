@@ -4,7 +4,13 @@
 <head>
   {% if alert %}
       <script>
-          alert("Account created successfully!!!")
+          alert("Username or Password is Invalid")
+      </script>
+  {% endif %}
+
+  {% if b_alert %}
+      <script>
+          alert("Your New Password will be sent to the registered Email shortly!!!")
       </script>
   {% endif %}
 </head>
@@ -90,8 +96,8 @@
           </div>
         
           <div class="con" style="background-color:#f1f1f1">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw"><a href="#">Forgot password?</a></span>
+            <a href="/"><button type="button" class="cancelbtn">Cancel</button></a>
+            <span class="psw"><a href="/forgot">Forgot password?</a></span>
           </div>
          </div> 
         </form><br><br>

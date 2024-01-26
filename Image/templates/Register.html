@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-
+<html>
 <head>
     {% if alert %}
         <script>
@@ -48,17 +48,17 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <div class="main-agileits">
 	<h2 class="sub-head">Register</h2>
 		<div class="sub-main">	
-			<form method="post" enctype="multipart/form-data">
+			<form method="post" enctype="multipart/form-data" name="f1" >
 				<input placeholder="Name" name="name" class="name" type="text" required="">
 					<span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span><br>
 
-				<input placeholder="Age" name="age" class="Age" type="text" required="">
+				<input placeholder="Age" name="age" class="Age" type="number" required="">
 					<span class="icon2"><i class="fa fa-user" aria-hidden="true"></i></span><br>
 
-                <input placeholder="Date of birth" name="dob" class="Dob" type="text" required="">
+                <input placeholder="Date of birth" name="dob" class="Dob" type="date" required="">
                      <span class="icon3"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span><br>
 
-				<input placeholder="Phone Number" name="number" class="number" type="text" required="">
+				<input placeholder="Phone Number" name="number" class="number" type="text" required="" maxlength="10" minlength="10">
                      <span class="icon4"><i class="fa fa-phone" aria-hidden="true"></i></span><br>
 
 				<input placeholder="Email" name="email" class="mail" type="text" required="">
@@ -73,21 +73,58 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<input  placeholder="Upload a profile pic" name="image" class="propic" type="file" required="">
 					<span class="icon8"><i class="fa fa-file-image-o" aria-hidden="true"></i></span><br>
 
-				<select name="utype" class="utype">
+				<select name="utype" class="utype" required>
 					<option value="">User type</option>
 					<option value="Contributor">Contributor</option>
 					<option value="User">User</option>
 				</select>
 				<span class="icon9"><i class="fa fa-users" aria-hidden="true"></i></span><br>
 
-				<input type="submit" value="Submit">
-			</form>
-		</div>
+				<input type="submit" value="Submit"  id="sub" >
+			</form>																																																																																																																																																																																																															
+		</div>	
 		<div class="clear"></div>
 </div>
 <!--//main-->
 
-<!-- </body>
-</html> -->
+<script>
+
+	$(document).ready(function(){
+	$("input[type='submit']").on("click",function(){
+	name=$("input[name='name']").val()
+	age=$("input[name='age']").val()
+	number=$("input[name='number']").val()
+	password=$("input[name='password']").val()
+	cpassword=$("input[name='cpassword']").val()
+	var a = /^[A-Za-z\s]+$/;
+	if(!name.match(a)){
+	alert("Enter valid name")
+	return false
+	}
+	if(!$.isNumeric(age)){
+	alert("Enter valid age")
+	return false
+	}
+	if(!$.isNumeric(number)){
+	alert("Enter valid Phone number")
+	return false
+	}
+	if(password.length<6){
+		alert("Enter atleast 6 characters")
+		return false
+	}
+	 if(password!=cpassword){
+	alert("Passwords are Not equal")
+	return false
+	}
+
+	})
+	})
+
+	
+</script>
+	
+</body>
+</html>
 
 {% endblock %}

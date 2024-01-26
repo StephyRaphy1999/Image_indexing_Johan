@@ -54,6 +54,7 @@ class contest(db.Model, UserMixin):
     end_date= db.Column(db.String(80))
     rules = db.Column(db.String(200))
     details= db.Column(db.String(200))
+    entry_fee = db.Column(db.Integer)
     image=db.Column(db.String(80))
     prize_1=db.Column(db.String(80))
     prize_2=db.Column(db.String(80))

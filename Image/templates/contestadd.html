@@ -39,6 +39,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- Online-fonts -->
 	<link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
 	<!-- //Online-fonts -->
+<style>
+	::-webkit-calendar-picker-indicator {
+    filter: invert(1)
+            brightness(50%)
+            sepia(100%)
+            saturate(10000%)
+            hue-rotate(900deg)
+}
+input::file-selector-button 
+{
+  font-weight: bold;
+  color: rgb(7, 8, 8);
+  border: thin solid rgb(5, 5, 5);
+  border-radius: 3px;
+}
+</style>
 
 </head>
 <body>
@@ -55,10 +71,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<input placeholder="End Date" name="end_date" type="date" required="">
 						<textarea placeholder="Rules" class="txtarea" name="rules"></textarea>
 						<textarea placeholder="Details" class="txtarea" name="details"></textarea>
-						<input type="file" name="image" required="">
-						<input placeholder="First Prize" name="prize_1" type="text" required="">
-						<input placeholder="Second Prize" name="prize_2" type="text" required="">
-						<input placeholder="Third Prize" name="prize_3" type="text" required="">
+						<input type="number"  name="rate" placeholder="Entry Fee" required>
+						<input type="file" name="image" required>
+						<input placeholder="First Prize" name="prize_1" type="number" required="">
+						<input placeholder="Second Prize" name="prize_2" type="number" required="">
+						<input placeholder="Third Prize" name="prize_3" type="number" required="">
 						<input type="submit" value="ADD">
 					</form>
 			</div>

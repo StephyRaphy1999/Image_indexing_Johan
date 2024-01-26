@@ -51,7 +51,7 @@
         }
         
         
-        input[type=text] {
+        input[type=text],input[type=number] {
           width: 100%;
           margin-bottom: 20px;
           padding: 12px;
@@ -81,6 +81,20 @@
           border-radius: 3px;
           cursor: pointer;
           font-size: 17px;
+        }
+
+        .btn_1 {
+          background-color: #04AA6D;
+          color: white;
+          padding: 12px;
+          margin: 10px 0;
+          border: none;
+          width: 30%;
+          border-radius: 3px;
+          cursor: pointer;
+          font-size: 17px;
+          margin-left: 520px;
+          
         }
         
         .btn:hover {
@@ -121,27 +135,92 @@
           <i class="fa fa-cc-mastercard" style="color:red;"></i>
           <i class="fa fa-cc-discover" style="color:orange;"></i>
         </div>
-        <form method="post">
+        <form name="f1" method="post">
             <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="Name">
+            <input type="text" id="cname" name="cardname" placeholder="Name" required>
             <label for="ccnum">Credit card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+            <input type="number" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required >
             <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+            <input type="text" id="expmonth" name="expmonth" placeholder="September" required>
             <div class="row">
               <div class="col-50">
-                <label for="expyear">Exp Year</label>~
-                <input type="text" id="expyear" name="expyear" placeholder="2018">
+                <label for="expyear">Exp Year</label>
+                <input type="text" id="expyear" name="expyear" placeholder="2018" required maxlength="4" minlength="4">
               </div>
               <div class="col-50">
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352">
+                <input type="text" id="cvv" name="cvv" placeholder="352" required maxlength="3" minlength="3">
               </div>
             </label>
-            <input type="submit" value="Continue to checkout" class="btn">
+            <input type="submit" value="Submit" class="btn_1" onclick="return validateForm(document.f1);">
+            
+
             </div>
           </div>
         </form> 
+
+        
+        <script>
+        function validateForm(form) {
+            // Call your individual validation functions here
+            if (!lettersOnlyCheck(form.cardname)) {
+                return false;
+            }
+        
+            if (!checkMonth(form.expmonth)) {
+                return false;
+            }
+
+            if(!numberValidation(form.expyear,form.cvv))
+            {
+              return false;
+            }
+        
+            // If all validations pass, the form will be submitted
+            return true;
+        }
+        
+        function lettersOnlyCheck(cardname) {
+          var a = /^[A-Za-z\s]+$/;
+            if (cardname.value.match(a)) {
+                return true;
+            } else {
+                alert("Please enter letters only in the name field");
+                return false;
+            }
+        }
+        
+        function checkMonth(expmonth) {
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+                "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+        
+            if (months.includes(expmonth.value)) {
+                return true;
+            } else {
+                alert("Enter a valid Month");
+                return false;
+            }
+        }
+
+        function numberValidation(expyear,cvv)
+        {
+ 
+            if (isNaN(expyear.value)) {
+                alert("Please enter a valid year");
+                return false;
+            } 
+            else if(isNaN(cvv.value))
+            {
+                alert("Enter a valid CVV");
+                return false;
+            }
+            else
+            {
+              return true;
+            }
+        }
+        </script>
+        
 </body>
 </html>
 
